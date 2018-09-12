@@ -31,16 +31,9 @@ The examples below show the most diverse communications being made to a single h
 ```js
 const hunit = require('hunit-js');
 
-// Defines authentication credentials. Hotel id, user and password.
-let opt = {
-    id: 20,
-    user: 'hotel.user',
-    password: 'hotel.password'
-};
-
 // Returns instance of communication class with defined credentials
 // Used to perform several methods for one hotel
-let client = hunit.newClient(opt);
+let client = hunit.newClient(20, 'hotel.user', 'hotel.password');
 
 // Get OTAs list
 client.getOTAs()
