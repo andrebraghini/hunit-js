@@ -4,7 +4,7 @@
   "description": "Communication library for HUnit Channel Manager",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/DedoxBR/hunit-js/issues"
   },
-  "homepage": "https://github.com/DedoxBR/hunit-js#readme"
+  "homepage": "https://github.com/DedoxBR/hunit-js#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
 }

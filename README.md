@@ -1,6 +1,13 @@
 # hunit-js
 Communication library for HUnit Channel Manager
 
+[![travis build](https://img.shields.io/travis/DedoxBR/hunit-js.svg?style=flat-square)](https://travis-ci.org/DedoxBR/hunit-js)
+[![codecov coverage](https://img.shields.io/codecov/c/github/DedoxBR/hunit-js.svg?style=flat-square)](https://codecov.io/github/DedoxBR/hunit-js)
+[![version](https://img.shields.io/npm/v/hunit-js.svg?style=flat-square)](http://npm.im/hunit-js)
+[![downloads](https://img.shields.io/npm/dm/hunit-js.svg?style=flat-square)](http://npm-stat.com/charts.html?package=hunit-js&from=2015-08-01)
+[![Apache-2.0 License](https://img.shields.io/npm/l/hunit-js.svg?style=flat-square)](https://spdx.org/licenses/Apache-2.0.html)
+
+
 ## Install
 
 ```bash
