@@ -1,6 +1,6 @@
 {
   "name": "hunit-js",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Communication library for HUnit Channel Manager",
   "main": "index.js",
   "scripts": {

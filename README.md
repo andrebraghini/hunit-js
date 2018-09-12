@@ -20,7 +20,7 @@ let opt = {
 };
 
 hunit.getOTAs(opt)
-    .then(xml => console.log(xml))
+    .then(res => console.log(res.data))
     .catch(e => console.log(e));
 ```
 
