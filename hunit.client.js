@@ -6,7 +6,7 @@ class HUnitClient {
 
     constructor(opt) {
         if (opt.id) this.hotelId = opt.id;
-        if (opt.name) this.user = opt.user;
+        if (opt.user) this.user = opt.user;
         if (opt.password) this.password = opt.password;
     }
 
