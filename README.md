@@ -6,7 +6,7 @@ Communication library for HUnit Channel Manager
 [![version](https://img.shields.io/npm/v/hunit-js.svg?style=flat-square)](http://npm.im/hunit-js)
 [![downloads](https://img.shields.io/npm/dm/hunit-js.svg?style=flat-square)](http://npm-stat.com/charts.html?package=hunit-js&from=2015-08-01)
 [![Apache-2.0 License](https://img.shields.io/npm/l/hunit-js.svg?style=flat-square)](https://spdx.org/licenses/Apache-2.0.html)
-
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 ## Install
 
