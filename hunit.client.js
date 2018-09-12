@@ -144,10 +144,10 @@ class HUnitClient {
         let content = '';
         for (let i = 0; i < updates.length; i++) {
             let from = this.getXMLDate(updates[i].from);
-            let to = getXMLDate(updates[i].to);
+            let to = this.getXMLDate(updates[i].to);
             if (!updates[i].days) updates[i].days = {sun: true, mon: true, tue: true, wed: true, thu: true, fri: true, sat: true};
 
-            daysStr = '';
+            let daysStr = '';
             for (let j = 0; j < days.length; j++) {
                 daysStr += days[j] + '="' + (updates[i].days[days[j]] ? 'true' : 'false') + '" ';
             }
