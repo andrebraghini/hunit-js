@@ -4,7 +4,7 @@ Communication library for HUnit Channel Manager
 ## Install
 
 ```bash
-npm install hunit-ts --save
+npm install hunit-js --save
 ```
 
 ## Usage
