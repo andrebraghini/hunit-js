@@ -1,0 +1,28 @@
+{
+  "name": "hunit-js",
+  "version": "1.0.0",
+  "description": "Communication library for HUnit Channel Manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DedoxBR/hunit-js.git"
+  },
+  "keywords": [
+    "hunit",
+    "hconnect",
+    "hsystem",
+    "channel",
+    "manager",
+    "ota",
+    "booking"
+  ],
+  "author": "André Braghini <dedoxbr@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/DedoxBR/hunit-js/issues"
+  },
+  "homepage": "https://github.com/DedoxBR/hunit-js#readme"
+}
