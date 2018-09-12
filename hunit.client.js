@@ -100,9 +100,8 @@ class HUnitClient {
      * @returns {Promise<any>} Promise da requisição http que retorna em formato XML
      */
     getReservation(id) {
-        return this.doRequest('booking/Read', this.montarXML('reservationByIdRQ'));
         let xml = this.montarXML('reservationByIdRQ', `<locatorId>${id}</locatorId>`);
-        return this.doRequest('Confirme/post', xml);
+        return this.doRequest('BookingById/read', xml);
     }
 
     /**
