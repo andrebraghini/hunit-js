@@ -14,7 +14,7 @@ npm install hunit-js --save
 ## Usage
 
 ```js
-const hunit = require('hunit-js');
+const hunitJs = require('hunit-js');
 
 // Defines authentication credentials. Hotel id, user and password.
 let opt = {
@@ -23,7 +23,7 @@ let opt = {
     password: 'hotel.password'
 };
 
-hunit.getOTAs(opt)
+hunitJs.getOTAs(opt)
     .then(res => console.log(res.data))
     .catch(e => console.log(e));
 ```
@@ -33,11 +33,11 @@ hunit.getOTAs(opt)
 The examples below show the most diverse communications being made to a single hotel in a simple way.
 
 ```js
-const hunit = require('hunit-js');
+const hunitJs = require('hunit-js');
 
 // Returns instance of communication class with defined credentials
 // Used to perform several methods for one hotel
-let client = hunit.newClient(20, 'hotel.user', 'hotel.password');
+let client = hunitJs.newClient(20, 'hotel.user', 'hotel.password');
 
 // Get OTAs list
 client.getOTAs()
