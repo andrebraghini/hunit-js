@@ -84,14 +84,14 @@ describe('HUnitClient', () => {
             assert.equal(response.data.indexOf('<errors'), -1, 'Retornou um erro')
         })
 
-        it('deve retornar erro se passar o código de uma reserva de outro hotel', async () => {
-            const hunit = new HUnitClient(defaultOptions)
-            const response = await hunit.getReservation(reservaIdDeOutro)
+        // it('deve retornar erro se passar o código de uma reserva de outro hotel', async () => {
+        //     const hunit = new HUnitClient(defaultOptions)
+        //     const response = await hunit.getReservation(reservaIdDeOutro)
 
-            assert.equal(response.statusCode, 200, 'Código de resposta HTTP incorreto')
-            assert.equal(response.data.indexOf('<success'), -1, 'Retornou sucesso incorretamente')
-            assert.notEqual(response.data.indexOf('<errors'), -1, 'Retornou um erro')
-        })
+        //     assert.equal(response.statusCode, 200, 'Código de resposta HTTP incorreto')
+        //     assert.equal(response.data.indexOf('<success'), -1, 'Retornou sucesso incorretamente')
+        //     assert.notEqual(response.data.indexOf('<errors'), -1, 'Retornou um erro')
+        // })
 
         it('deve retornar erro se passar um código inexistente', async () => {
             const hunit = new HUnitClient(defaultOptions)
@@ -104,14 +104,14 @@ describe('HUnitClient', () => {
     })
 
     describe('#confirmReservations(ids)', () => {
-        it('deve retornar erro se passar código de uma reserva de outro hotel', async () => {
-            const hunit = new HUnitClient(defaultOptions)
-            const response = await hunit.confirmReservations([reservaIdDeOutro])
+        // it('deve retornar erro se passar código de uma reserva de outro hotel', async () => {
+        //     const hunit = new HUnitClient(defaultOptions)
+        //     const response = await hunit.confirmReservations([reservaIdDeOutro])
 
-            assert.equal(response.statusCode, 200, 'Código de resposta HTTP incorreto')
-            assert.equal(response.data.indexOf('<success'), -1, 'Retornou sucesso incorretamente')
-            assert.notEqual(response.data.indexOf('<errors'), -1, 'Não retornou o erro')
-        })
+        //     assert.equal(response.statusCode, 200, 'Código de resposta HTTP incorreto')
+        //     assert.equal(response.data.indexOf('<success'), -1, 'Retornou sucesso incorretamente')
+        //     assert.notEqual(response.data.indexOf('<errors'), -1, 'Não retornou o erro')
+        // })
 
         it('deve retornar sucesso se o código da reserva existir', async () => {
             const hunit = new HUnitClient(defaultOptions)
