@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/DedoxBR/hunit-js#readme",
   "devDependencies": {
+    "codecov": "^3.1.0",
+    "istanbul": "^0.4.5",
     "mocha": "^5.2.0"
   }
 }
