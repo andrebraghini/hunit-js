@@ -4,15 +4,23 @@ const https = require('https');
 
 class HUnitClient {
 
+    /**
+     * @param {object} [opt] Opções de inicialização
+     * @param {number} [opt.id] Código de identificação do hotel/pousada no HUnit
+     * @param {string} [opt.user] Usuário de autenticação do hotel/pousada no HUnit
+     * @param {string} [opt.password] Senha de autenticação do hotel/pousada no HUnit
+     */
     constructor(opt) {
-        if (opt.id) this.hotelId = opt.id;
-        if (opt.user) this.user = opt.user;
-        if (opt.password) this.password = opt.password;
+        if (opt) {
+            this.hotelId = opt.id;
+            this.user = opt.user;
+            this.password = opt.password;
+        }
     }
 
     /**
      * Retorna string da data no formato usado pelo HUnit
-     * @param {Date} date - Data para ser transformada no formato usado nos XMLs
+     * @param {Date} date Data para ser transformada no formato usado nos XMLs
      * @returns {string} Data em string no formato yyyy-mm-dd
      */
     getXMLDate(date) {
@@ -28,8 +36,8 @@ class HUnitClient {
 
     /**
      * Retorna XML com credenciais de acesso já definidas
-     * @param {string} tag - Nome da tag principal do XML
-     * @param {string} content - Conteúdo XML que irá no corpo do mesmo
+     * @param {string} tag Nome da tag principal do XML
+     * @param {string} content Conteúdo XML que irá no corpo do mesmo
      * @returns {string} XML completo montado já com as credencias de acesso
      */
     montarXML(tag, content) {
@@ -45,8 +53,8 @@ class HUnitClient {
 
     /**
      * Faz requisição POST para a URL solicitada e retorna uma string
-     * @param {string} path - Endereço do método que será acrescentado à URL
-     * @param {string} content - Conteúdo da requisição
+     * @param {string} path Endereço do método que será acrescentado à URL
+     * @param {string} content Conteúdo da requisição
      * @returns {Promise<any>} Promise da requisição http que retorna em formato XML
      */
     doRequest(path, content) {
@@ -96,7 +104,7 @@ class HUnitClient {
 
     /**
      * Retorna reserva especificada pelo código de identificação.
-     * @param {number} id - Código de identificação da reserva no HUnit
+     * @param {number} id Código de identificação da reserva no HUnit
      * @returns {Promise<any>} Promise da requisição http que retorna em formato XML
      */
     getReservation(id) {
@@ -107,7 +115,7 @@ class HUnitClient {
     /**
      * Confirma recebimento de reserva no HUnit. As reservas confirmadas por este método
      * não serão mais retornadas no método de consulta da lista de reservas.
-     * @param {number[]} ids - Array com códigos das reservas confirmadas
+     * @param {number[]} ids Array com códigos das reservas confirmadas
      * @returns {Promise<any>} Promise da requisição http que retorna em formato XML
      */
     confirmReservations(ids) {
@@ -124,19 +132,19 @@ class HUnitClient {
 
     /**
      * Atualiza inventário (Disponibilidade de tipos de aptos) no HUnit.
-     * @param {Object[]} updates - Lista de atualizações de inventário para tipos de apto
-     * @param {string} updates[].id - Código do tipo do apto no PMS (Seu sistema, não no HUnit)
-     * @param {number} updates[].qtd - Quantidade de apartamentos disponíveis no período para o tipo informado
-     * @param {Date} updates[].from - Data de início da solicitação de alteração
-     * @param {Date} updates[].to - Data de fim da solicitação de alteração (incluída na alteração)
-     * @param {Object} updates[].days - Dias da semana para aplicar a disponibilidade (Se não passar vai aplicar para todos)
-     * @param {boolean} updates[].days.sun - Domingo
-     * @param {boolean} updates[].days.mon - Segunda-feira
-     * @param {boolean} updates[].days.tue - Terça-feira
-     * @param {boolean} updates[].days.wed - Quarta-feira
-     * @param {boolean} updates[].days.thu - Quinta-feira
-     * @param {boolean} updates[].days.fri - Sexta-feira
-     * @param {boolean} updates[].days.sat - Sábado
+     * @param {Object[]} updates Lista de atualizações de inventário para tipos de apto
+     * @param {string} updates[].id Código do tipo do apto no PMS (Seu sistema, não no HUnit)
+     * @param {number} updates[].qtd Quantidade de apartamentos disponíveis no período para o tipo informado
+     * @param {Date} updates[].from Data de início da solicitação de alteração
+     * @param {Date} updates[].to Data de fim da solicitação de alteração (incluída na alteração)
+     * @param {Object} updates[].days Dias da semana para aplicar a disponibilidade (Se não passar vai aplicar para todos)
+     * @param {boolean} updates[].days.sun Domingo
+     * @param {boolean} updates[].days.mon Segunda-feira
+     * @param {boolean} updates[].days.tue Terça-feira
+     * @param {boolean} updates[].days.wed Quarta-feira
+     * @param {boolean} updates[].days.thu Quinta-feira
+     * @param {boolean} updates[].days.fri Sexta-feira
+     * @param {boolean} updates[].days.sat Sábado
      * @returns {Promise<any>} Promise da requisição http que retorna em formato XML
      */
     updateInventory(updates) {
@@ -167,5 +175,4 @@ class HUnitClient {
 
 }
 
-exports.default = HUnitClient;
-module.exports = exports['default'];
+module.exports = HUnitClient;
