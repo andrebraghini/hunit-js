@@ -2,6 +2,7 @@
 Communication library for HUnit Channel Manager
 
 [![travis build](https://img.shields.io/travis/DedoxBR/hunit-js.svg?style=flat-square)](https://travis-ci.org/DedoxBR/hunit-js)
+[![codecov](https://codecov.io/gh/DedoxBR/hunit-js/branch/master/graph/badge.svg)](https://codecov.io/gh/DedoxBR/hunit-js)
 [![version](https://img.shields.io/npm/v/hunit-js.svg?style=flat-square)](http://npm.im/hunit-js)
 [![Apache-2.0 License](https://img.shields.io/npm/l/hunit-js.svg?style=flat-square)](https://spdx.org/licenses/Apache-2.0.html)
 
