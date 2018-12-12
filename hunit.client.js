@@ -74,9 +74,11 @@ class HUnitClient {
             const req = https.request(opt, res => {
                 res.setEncoding('utf8');
                 res.on('data', data => {
-                    if (res.statusCode && res.statusCode >= 200 && res.statusCode < 300)
-                        return resolve({statusCode: res.statusCode, headers: res.headers, data: data});
-                    reject({statusCode: res.statusCode, headers: res.headers, data: data});
+                    if (res.statusCode && res.statusCode >= 200 && res.statusCode < 300) {
+                        resolve({statusCode: res.statusCode, headers: res.headers, data: data});
+                    } else {
+                        reject({statusCode: res.statusCode, headers: res.headers, data: data});
+                    }
                 });
             });
             req.on('error', e => reject(e));
