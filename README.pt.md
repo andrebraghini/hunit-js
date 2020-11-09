@@ -18,31 +18,31 @@
   <br>
 
   <i>
-    Communication library for HUnit, HSystem Channel Manager
+    Biblioteca de comunicação para o HUnit, Channel Manager da HSystem
   </i>
 </p>
 
 <p align="center">
-  <a href="README.md">English</a>
+  <a href="README.md">Inglês</a>
   ·
-  <a href="https://github.com/andrebraghini/hunit-js/blob/main/README.pt.md">Portuguese</a>
+  <a href="https://github.com/andrebraghini/hunit-js/blob/main/README.pt.md">Português</a>
 </p>
 
 
-## Content
+## Conteúdo
 
-1. [Installation](#installation)
+1. [Instalação](#instalação)
 
-2. [Usage](#usage)
+2. [Uso](#uso)
 
 
-## Installation
+## Instalação
 
 ```bash
 npm install hunit-js --save
 ```
 
-## Usage
+## Uso
 
 ```js
 const hunitJs = require('hunit-js');

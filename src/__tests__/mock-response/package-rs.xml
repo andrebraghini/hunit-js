@@ -1,0 +1,4 @@
+<packageRS>
+  <package id="1" portalId="1" portalName="Booking.com" createDateTime="2011-12-30T23:39:00Z" status="3" attemptsSending="1" />
+  <package id="2" portalId="1" portalName="Booking.com" createDateTime="2011-12-30T23:39:00Z" status="1" attemptsSending="1"/>
+</packageRS>

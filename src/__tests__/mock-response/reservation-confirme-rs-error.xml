@@ -1,0 +1,7 @@
+<reservationConfirmeRS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="">
+  <erros>
+    <error>Não foi possível identificar a reserva '222'</error>
+  </erros>
+</reservationConfirmeRS>

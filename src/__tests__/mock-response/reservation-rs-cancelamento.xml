@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<reservationRS>
+  <reservation>
+    <hotelId>123</hotelId>
+    <portalId>1</portalId>
+    <id>2222</id>
+    <status>cancel</status>
+    <cancellationDateTime>2011-12-30T23:39:00Z</cancellationDateTime>
+  </reservation>
+</reservationRS>

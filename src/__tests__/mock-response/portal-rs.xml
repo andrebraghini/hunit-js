@@ -1,0 +1,9 @@
+<portalRS>
+  <portal id="1" name="Expedia" isActive="true"/>
+  <portal id="2" name="Booking.com" isActive="true"/>
+  <portal id="3" name="Hotels.com" isActive="true" isChildPortal="true" masterPortalId="1" masterPortal="Expedia"/>
+  <portal id="4" name="Venere" isActive="true" isChildPortal="true" masterPortalId="1" masterPortal="Expedia"/>
+  <portal id="5" name="HBOOK" isActive="true"/>
+  <portal id="6" name="Orbitz" isActive="false"/>
+  <portal id="7" name="Decolar" isActive="true"/>
+</portalRS>

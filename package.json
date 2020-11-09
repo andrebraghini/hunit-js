@@ -1,14 +1,26 @@
 {
   "name": "hunit-js",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "Communication library for HUnit Channel Manager",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
-    "test": "mocha"
+    "test": "jest --config jest.config.json",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DedoxBR/hunit-js.git"
+    "url": "git+https://github.com/andrebraghini/hunit-js.git"
   },
   "keywords": [
     "hunit",
@@ -19,15 +31,23 @@
     "ota",
     "booking"
   ],
-  "author": "André Braghini <dedoxbr@gmail.com>",
-  "license": "Apache-2.0",
+  "author": "Andre Braghini",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DedoxBR/hunit-js/issues"
+    "url": "https://github.com/andrebraghini/hunit-js/issues"
   },
-  "homepage": "https://github.com/DedoxBR/hunit-js#readme",
+  "homepage": "https://github.com/andrebraghini/hunit-js#readme",
   "devDependencies": {
-    "codecov": "^3.1.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^5.2.0"
+    "@types/jest": "^22.2.3",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.4.3"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "xml-js": "^1.6.11"
   }
 }

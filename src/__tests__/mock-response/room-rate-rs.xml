@@ -1,0 +1,10 @@
+<roomRateRS>
+  <roomRate id="2445" name="SILVER DUPLO CASAL" isActive="true" isChildRoomRate="false" />
+  <roomRate id="2446" name="SILVER SINGLE CASAL" isActive="true" isChildRoomRate="true" masterRoomRateId="2445" MasterRoomRate="SILVER DUPLO CASAL" />
+  <roomRate id="2447" name="SILVER DUPLO SOLTEIRO" isActive="true" isChildRoomRate="false" />
+  <roomRate id="2448" name="SILVER SINGLE SOLTEIRO" isActive="true" isChildRoomRate="true" masterRoomRateId="2447" MasterRoomRate="SILVER DUPLO SOLTEIRO" />
+  <roomRate id="2449" name="GOLD DUPLO CASAL" isActive="true" isChildRoomRate="false" />
+  <roomRate id="2450" name="GOLD SINGLE CASAL" isActive="true" isChildRoomRate="true" masterRoomRateId="2449" MasterRoomRate="GOLD DUPLO CASAL" />
+  <roomRate id="2451" name="GOLD DUPLO SOLTEIRO" isActive="true" isChildRoomRate="false" />
+  <roomRate id="2452" name="GOLD SINGLE SOLTEIRO" isActive="true" isChildRoomRate="true" masterRoomRateId="2451" MasterRoomRate="GOLD DUPLO SOLTEIRO" />
+</roomRateRS>

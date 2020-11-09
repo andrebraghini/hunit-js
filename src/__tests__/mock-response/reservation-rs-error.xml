@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<reservationRS>
+  <erros>
+    <error>Não foi possível identificar o hotel com id '123'</error>
+  </erros>
+</reservationRS>

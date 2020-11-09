@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<reservationRS>
+  <reservation>
+    <hotelId>123</hotelId>
+    <portalId>1</portalId>
+    <id>2222</id>
+    <status>modify</status>
+    <createDateTime>2011-12-30T23:39:00Z</createDateTime>
+    <paymentType>1</paymentType>
+    <remark>Comentários</remark>
+    <currencyCode>BRL</currencyCode>
+    <locatorId>5689</locatorId>
+    <totalValue>350,00</totalValue>
+    <rooms>
+      <room>
+        <id>1</id>
+        <roomLocatorId>268995</roomLocatorId>
+        <roomTypeId>222</roomTypeId>
+        <status>active</status>
+        <arrivalDate>22/10/2016</arrivalDate>
+        <departureDate>24/10/2016</departureDate>
+        <adults>2</adults>
+        <children>1</children>
+        <totalValue>550,00</totalValue>
+        <remark>Comentários</remark>
+        <addons>
+          <addon>
+            <name>Decoração especial no quarto</name>
+            <totalValue>50,00</totalValue>
+          </addon>
+        </addons>
+        <dailyRates>
+          <dailyRate>
+            <date>27/08/2016</date>
+            <totalValue>150,00</totalValue>
+          </dailyRate>
+          <dailyRate>
+            <date>28/08/2016</date>
+            <totalValue>150,00</totalValue>
+          </dailyRate>
+          <dailyRate>
+            <date>29/08/2016</date>
+            <totalValue>250,00</totalValue>
+          </dailyRate>
+        </dailyRates>
+        <mealPlan>2</mealPlan>
+        <guest>
+          <firstName>Volnei Hartaman</firstName>
+          <lastName>Silva</lastName>
+          <email>volnei@gmail.com</email>
+        </guest>
+      </room>
+      <room>
+        <id>123</id>
+        <roomLocatorId>268996</roomLocatorId>
+        <roomTypeId>222</roomTypeId>
+        <status>cancel</status>
+        <arrivalDate>22/10/2016</arrivalDate>
+        <departureDate>24/10/2016</departureDate>
+        <adults>2</adults>
+        <children>1</children>
+        <totalValue>550,00</totalValue>
+        <remark>Comentários</remark>
+        <addons>
+          <addon>
+            <name>Decoração especial no quarto</name>
+            <totalValue>50,00</totalValue>
+          </addon>
+        </addons>
+        <dailyRates>
+          <dailyRate>
+            <date>27/08/2016</date>
+            <totalValue>150,00</totalValue>
+          </dailyRate>
+          <dailyRate>
+            <date>28/08/2016</date>
+            <totalValue>150,00</totalValue>
+          </dailyRate>
+          <dailyRate>
+            <date>29/08/2016</date>
+            <totalValue>250,00</totalValue>
+          </dailyRate>
+        </dailyRates>
+        <mealPlan>2</mealPlan>
+        <guest>
+          <firstName>Volnei Hartaman</firstName>
+          <lastName>Silva</lastName>
+          <email>volnei@gmail.com</email>
+        </guest>
+      </room>
+    </rooms>
+    <guest>
+      <firstName>Antonio Rodrigues</firstName>
+      <lastName>Antonio Rodrigues</lastName>
+      <email>ar@host.com</email>
+      <phone>1141267898</phone>
+    </guest>
+    <payment>
+      <cardType>VISA</cardType>
+      <prePaymentValue>95,50</prePaymentValue>
+      <prePaymentCharged>true</prePaymentCharged>
+      <authorizationCode>34cx5632xxgr2111</authorizationCode>
+    </payment>
+    <collectType>HotelCollect</collectType>
+  </reservation>
+</reservationRS>

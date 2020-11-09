@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "experimentalDecorators": true,
+    "lib": ["es2018"],
+    "module": "commonjs",
+    "outDir": "./lib",
+    "strict": true,
+    "target": "es5",
+    "noImplicitThis": false,
+    "noImplicitAny": false,
+    "sourceMap": true,
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

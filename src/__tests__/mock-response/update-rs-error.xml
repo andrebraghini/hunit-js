@@ -1,0 +1,7 @@
+<updateRS xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="">
+  <erros>
+    <error>Não foi possível identificar o tipo de quarto '222'</error>
+  </erros>
+</updateRS>
