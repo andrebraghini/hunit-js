@@ -139,7 +139,7 @@ export function xmlOneCallToReservation(xml: any): Reservation[] {
   list.forEach(item => {
     if (item.reservation) {
       const reservationXMLList = transformToArray(item.reservation);
-      list.push(...reservationXMLList.map(parseReservation));
+      result.push(...reservationXMLList.map(parseReservation));
     }
   });
 
