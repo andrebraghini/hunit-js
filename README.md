@@ -10,7 +10,9 @@
   <a href="https://github.com/andrebraghini/hunit-js/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/andrebraghini/hunit-js?color=798D2A">
   </a>
-  <img alt="npm version" src="https://img.shields.io/npm/v/hunit-js?color=798D2A">
+  <a href="https://www.npmjs.com/package/hunit-js">
+    <img alt="npm version" src="https://img.shields.io/npm/v/hunit-js?color=798D2A">
+  </a>
   <a href="https://github.com/andrebraghini/hunit-js/blob/master/LICENSE">
     <img alt="License" src="https://img.shields.io/badge/license-MIT-798D2A">
   </a>
