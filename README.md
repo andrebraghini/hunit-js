@@ -44,61 +44,132 @@ npm install hunit-js --save
 
 ## Usage
 
-```js
-const hunitJs = require('hunit-js');
+```ts
+import { HUnitClient } from 'hunit-js';
 
 // Defines authentication credentials. Hotel id, user and password.
-let opt = {
-    id: 20,
-    user: 'hotel.user',
-    password: 'hotel.password'
+const credentials = {
+  hotelId: '20',
+  userName: 'hotel.user',
+  password: 'hotel.password'
 };
 
-hunitJs.getOTAs(opt)
-    .then(res => console.log(res.data))
-    .catch(e => console.log(e));
+const hunit = new HUnitClient(credentials).portalRead()
+  .then(res => console.log(res.data))
+  .catch(e => console.log(e));
 ```
 
 ### Example list
 
 The examples below show the most diverse communications being made to a single hotel in a simple way.
 
-```js
-const hunitJs = require('hunit-js');
+```ts
+import { HUnitClient } from 'hunit-js';
 
-// Returns instance of communication class with defined credentials
-// Used to perform several methods for one hotel
-let client = hunitJs.newClient(20, 'hotel.user', 'hotel.password');
+const hunit = new HUnitClient({ hotelId: '20', userName: 'hotel.user', password: 'hotel.password' });
 
 // Get OTAs list
-client.getOTAs()
-    .then(res => console.log(res.data))
-    .catch(e => console.log(e));
-
-// Get specific reservation
-let reservationId = 21565;
-client.getReservation(reservationId)
-    .then(res => console.log(res.data))
-    .catch(e => console.log(e));
+hunit.portalRead()
+  .then(portalList => console.log({ portalList }))
+  .catch(console.error);
 
 // Get new, changed or canceled reservations
-client.getReservations()
-    .then(res => console.log(res.data))
-     .catch(e => console.log(e));
+hunit.bookingRead()
+  .then(reservationList => console.log({ reservationList }))
+  .catch(console.error);
+
+// Get specific reservation by HUnit ID
+hunit.bookingByIdRead({ locatorId: '21565' })
+  .then(reservation => console.log({ reservation }))
+  .catch(console.error);
+
+// Get specific reservation by Portal ID
+hunit.bookingByIdRead({ portalId: '1', channelReservationId: '155511' })
+  .then(reservation => console.log({ reservation }))
+  .catch(console.error);
 
 // Confirm receipt of reservation
-client.confirmReservations([123, 124])
-    .then(res => console.log(res.data))
-    .catch(e => console.log(e));
+const confirmationList = [
+  { reservationId: '12', pmsReservationIdentifier: 'my_id_1' },
+  { reservationId: '52', pmsReservationIdentifier: 'my_id_2' },
+  { reservationId: '589', pmsReservationIdentifier: 'my_id_5' }
+];
+hunit.confirmePost(confirmationList)
+  .then(confirmeResult => console.log({ confirmeResult }))
+  .catch(console.error);
 
 // Update inventory
-let updates = [
-    // Remove availability from apartment 12, from 25 to 31 December
-    {id: 12, qtd: 0, from: new Date(2018, 11, 25), to: new Date(2018, 11, 31)},
-    // Remove availability from apartment 12, during the weekends of January
-    {id: 12, qtd: 0, from: new Date(2019, 0, 1), to: new Date(2019, 0, 31), days: {fri: true, sat: true}}
+const updates = [
+  // Remove availability from apartment 12, from December 25 to December 31
+  // if you do not enter the day of the week in the "dateRange" tag, all days will be considered
+  {
+    roomTypeId: '12',
+    availability: 0,
+    dateRange: { from: new Date('2021-12-25'), to: new Date('2021-12-31') }
+  },
+  // Remove availability from apartment 12, during the weekends of January
+  {
+    roomTypeId: '12',
+    availability: 0,
+    dateRange: { from: new Date('2021-01-01'), to: new Date('2021-01-31'), fri: true, sat: true }
+  },
+  // Close availability from apartment 222 sending a sell stop
+  {
+    roomTypeId: '222',
+    dateRange: { from: new Date('2021-12-25'), to: new Date('2021-12-31') },
+    stopSell: true
+  },
+  // Open availability from apartment 15 canceling a sell stop
+  {
+    roomTypeId: '15',
+    dateRange: { from: new Date('2021-12-25'), to: new Date('2021-12-31') },
+    stopSell: false
+  }
 ];
-client.updateInventory(updates)
-    .then(res => console.log(res.data))
-    .catch(e => console.log(e));
+hunit.availabilityUpdate(updates)
+  .then(availabilityUpdateResult => console.log({ availabilityUpdateResult }))
+  .catch(console.error);
+
+// Get packages list
+hunit.packageRead()
+  .then(packageList => console.log({ packageList }))
+  .catch(console.error);
+
+// Get room rate list
+hunit.roomRateRead()
+  .then(roomRateList => console.log({ roomRateList }))
+  .catch(console.error);
+
+// Update occupancy rate
+const occupancyRateList = [
+  { date: new Date('2020-01-01'), occupancy: 15 },
+  { date: new Date('2020-01-02'), occupancy: 21 },
+  { date: new Date('2020-01-03'), occupancy: 13 }
+];
+hunit.occupancyRateUpdate(occupancyRateList)
+  .then(rateUpdateResult => console.log({ rateUpdateResult }))
+  .catch(console.error);
+```
+
+The requests below are made to get reservations and confirm the receipt of several hotels at the same time in a single request.
+
+```ts
+import { HUnitClient } from 'hunit-js';
+
+const hunit = new HUnitClient({ userName: 'hotel.user', password: 'hotel.password' });
+
+// Get new, changed or canceled reservations for all hotels
+hunit.bookingReadOneCall()
+  .then(reservationList => console.log({ reservationList }))
+  .catch(console.error);
+
+// Confirm receipt of reservation for all hotels
+const confirmationListOneCall = [
+  { hotelId: '65', reservationId: '12', pmsReservationIdentifier: 'my_id_1' },
+  { hotelId: '65', reservationId: '52', pmsReservationIdentifier: 'my_id_2' },
+  { hotelId: '77', reservationId: '98', pmsReservationIdentifier: 'my_id_78' }
+];
+hunit.bookingConfirmationOneCall(confirmationListOneCall)
+  .then(confirmeResult => console.log({ confirmeResult }))
+  .catch(console.error);
 ```
