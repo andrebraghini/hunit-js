@@ -54,9 +54,13 @@ const credentials = {
   password: 'hotel.password'
 };
 
-const hunit = new HUnitClient(credentials).portalRead()
-  .then(res => console.log(res.data))
-  .catch(e => console.log(e));
+// Instantiate the client
+const hunit = new HUnitClient(credentials);
+
+// Do request
+hunit.portalRead()
+  .then(console.log)
+  .catch(console.error);
 ```
 
 ### Example list
