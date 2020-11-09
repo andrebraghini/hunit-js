@@ -7,7 +7,7 @@
 export function clone(obj: any, propList?: string[]) {
   let copy;
   // Handle the 3 simple types, and null or undefined
-  if (null == obj || "object" !== typeof obj) {
+  if (null == obj || 'object' !== typeof obj) {
     return obj;
   }
   // Handle Date
@@ -37,7 +37,7 @@ export function clone(obj: any, propList?: string[]) {
     }
     return copy;
   }
-  throw new Error("Unable to copy obj! Its type isn't supported.");
+  throw new Error('Unable to copy obj! Its type isn\'t supported.');
 }
 
 /**
@@ -97,7 +97,7 @@ export function dateToStr(date?: Date, format: string = 'DD/MM/YYYY'): string {
  */
 export function strToDate(dateString: string): Date {
   const [date] = dateString.split(' ');
-  const [day, month, fullYear] = date.split("/");
+  const [day, month, fullYear] = date.split('/');
 
   let year = fullYear;
   if (year && year.length === 2) {
