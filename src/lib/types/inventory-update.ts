@@ -12,7 +12,7 @@ export interface InventoryUpdate {
 
   /** Elemento que define a estrutura de período */
   dateRange?: DateRange;
-  
+
   /** Define se o quarto está aberto ou fechado para a venda */
   stopSell?: boolean;
 
@@ -22,4 +22,3 @@ export interface InventoryUpdate {
    */
   portalId?: string;
 }
-  

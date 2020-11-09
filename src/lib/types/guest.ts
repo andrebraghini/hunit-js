@@ -21,7 +21,7 @@ export interface Guest {
    * Muitos portais não enviam para a HSystem qualquer documento, logo, não se deve usar ele como chave.
    */
   documentNumber?: string;
-  
+
   /** Documento de identificação do hóspede (legado) */
   document?: string;
 

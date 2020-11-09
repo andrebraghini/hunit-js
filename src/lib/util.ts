@@ -37,12 +37,12 @@ export function clone(obj: any, propList?: string[]) {
     }
     return copy;
   }
-  throw new Error('Unable to copy obj! Its type isn\'t supported.');
+  throw new Error("Unable to copy obj! Its type isn't supported.");
 }
 
 /**
  * Garante o retorno do dado em um array se não estiver
- * @param data 
+ * @param data
  */
 export function transformToArray(data: any): any[] {
   if (Array.isArray(data)) {
@@ -67,8 +67,10 @@ export function pad(value: string | number, length: number): string {
  * @param format Formato da data de input
  */
 export function dateToStr(date?: Date, format: string = 'DD/MM/YYYY'): string {
-  if (!date) { return '' };
-  
+  if (!date) {
+    return '';
+  }
+
   const yyyy = pad(date.getUTCFullYear(), 4);
   const yy = yyyy.substr(-2);
   const mm = pad(date.getUTCMonth() + 1, 2);
@@ -89,7 +91,7 @@ export function dateToStr(date?: Date, format: string = 'DD/MM/YYYY'): string {
     .replace('NN', nn)
     .replace('SS', ss)
     .replace('ZZZ', zzz);
-};
+}
 
 /**
  * Converter string dd/mm/yyyy para Date
@@ -101,18 +103,18 @@ export function strToDate(dateString: string): Date {
 
   let year = fullYear;
   if (year && year.length === 2) {
-      const anoAtual = new Date().getUTCFullYear().toString();
-      year = anoAtual.substring(0, 2) + year;
+    const anoAtual = new Date().getUTCFullYear().toString();
+    year = anoAtual.substring(0, 2) + year;
   }
 
   return new Date(`${year}-${month}-${day}Z`);
-};
+}
 
 export function getXmlString(value: any): string {
   if (value === undefined) {
     return '';
   }
-  
+
   if (typeof value === 'string') {
     return value;
   }
@@ -132,7 +134,7 @@ export function getXmlNumber(value: any): number | undefined {
   if (typeof value === 'number') {
     return value;
   }
-  
+
   if (typeof value === 'string') {
     return parseFloat(value.replace(',', '.'));
   }
@@ -166,7 +168,7 @@ export function cloneXmlNumbers(obj: any, fields?: string[]) {
   if (!fields) {
     fields = Object.keys(obj);
   }
-  
+
   const result: any = {};
   for (const key of fields) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -180,7 +182,7 @@ export function cloneXmlBooleans(obj: any, fields?: string[]) {
   if (!fields) {
     fields = Object.keys(obj);
   }
-  
+
   const result: any = {};
   for (const key of fields) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {

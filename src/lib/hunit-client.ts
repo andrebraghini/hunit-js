@@ -16,16 +16,14 @@ interface BookingByIdSearch {
 export class HUnitClient {
   private api: AxiosInstance;
 
-  constructor(
-    public credentials: Credentials = {}
-  ) {
+  constructor(public credentials: Credentials = {}) {
     this.api = axios.create({
       baseURL: 'https://services.hunit.com.br/api/',
       headers: {
-        'accept': 'application/xml',
+        accept: 'application/xml',
         'content-type': 'application/xml',
         'cache-control': 'no-cache',
-      }
+      },
     });
   }
 
@@ -41,8 +39,8 @@ export class HUnitClient {
           version: '1.0',
           encoding: 'UTF-8',
           standalone: 'yes',
-        }
-      }
+        },
+      },
     };
 
     xml[rootTag] = {
@@ -61,7 +59,7 @@ export class HUnitClient {
    * @param xmlResponse XML de resposta já transformado em objeto
    */
   private errorHandler(xmlResponse: any) {
-    const rootTag = Object.keys(xmlResponse).find(key => key[0] !== '_');
+    const rootTag = Object.keys(xmlResponse).find((key) => key[0] !== '_');
     if (rootTag) {
       if (xmlResponse[rootTag].errors) {
         const errors = transformToArray(xmlResponse[rootTag].errors.error);
@@ -77,10 +75,10 @@ export class HUnitClient {
    * @param content Conteúdo da requisição
    */
   private doRequest(path: string, content: any): Promise<any> {
-    const contentStr = (typeof content === 'string') ? content : js2xml(content, { compact: true });
+    const contentStr = typeof content === 'string' ? content : js2xml(content, { compact: true });
     return this.api
       .post(path, contentStr)
-      .then(response => xml2js(response.data, { compact: true }))
+      .then((response) => xml2js(response.data, { compact: true }))
       .then(this.errorHandler);
   }
 
@@ -101,8 +99,7 @@ export class HUnitClient {
     const update = inventoryToXml(inventoryUpdates);
     const updates = { update };
     const xml = this.getXMLBase('updateRQ', { updates });
-    return this.doRequest('availability/update', xml)
-      .then(response => !response.updateRS.errors);
+    return this.doRequest('availability/update', xml).then((response) => !response.updateRS.errors);
   }
 
   /**
@@ -121,8 +118,7 @@ export class HUnitClient {
   async confirmePost(confirmation: ReservationConfirm[]): Promise<any> {
     const confirmations = { confirmation };
     const xml = this.getXMLBase('reservationConfirmeRQ', { confirmations });
-    return this.doRequest('confirme/post', xml)
-      .then(response => !response.reservationConfirmeRS.errors);
+    return this.doRequest('confirme/post', xml).then((response) => !response.reservationConfirmeRS.errors);
   }
 
   /**
@@ -133,9 +129,11 @@ export class HUnitClient {
     const response = await this.doRequest('package/read', xml);
 
     const packageXMLList = transformToArray(response.packageRS.package);
-    return packageXMLList.map(packageItem => ({
+    return packageXMLList.map((packageItem) => ({
       ...clone(packageItem._attributes),
-      ...(!!packageItem._attributes.createDateTime && { createDateTime: new Date(packageItem._attributes.createDateTime) })
+      ...(!!packageItem._attributes.createDateTime && {
+        createDateTime: new Date(packageItem._attributes.createDateTime),
+      }),
     }));
   }
 
@@ -147,17 +145,9 @@ export class HUnitClient {
     const response = await this.doRequest('roomrate/read', xml);
 
     const roomRateXMLList = transformToArray(response.roomRateRS.roomRate);
-    return roomRateXMLList.map(roomRate => ({
-      ...cloneXmlStrings(roomRate._attributes, [
-        'id',
-        'name',
-        'masterRoomRateId',
-        'MasterRoomRate'
-      ]),
-      ...cloneXmlBooleans(roomRate._attributes, [
-        'isActive',
-        'isChildRoomRate'
-      ])
+    return roomRateXMLList.map((roomRate) => ({
+      ...cloneXmlStrings(roomRate._attributes, ['id', 'name', 'masterRoomRateId', 'MasterRoomRate']),
+      ...cloneXmlBooleans(roomRate._attributes, ['isActive', 'isChildRoomRate']),
     }));
   }
 
@@ -180,7 +170,7 @@ export class HUnitClient {
   /**
    * Busca de reserva (OneCall)
    */
-  async bookingReadOneCall(): Promise<Reservation[]>{
+  async bookingReadOneCall(): Promise<Reservation[]> {
     const xml = this.getXMLBase('reservationRQ', undefined, false);
     const response = await this.doRequest('booking/readonecall', xml);
     return xmlOneCallToReservation(response);
@@ -193,8 +183,9 @@ export class HUnitClient {
   async bookingConfirmationOneCall(confirmation: ReservationConfirm[]): Promise<boolean> {
     const confirmations = { confirmation };
     const xml = this.getXMLBase('reservationConfirmeRQ', { confirmations }, false);
-    return this.doRequest('booking/confirmationonecall', xml)
-      .then(response => !response.reservationConfirmeRS.errors);
+    return this.doRequest('booking/confirmationonecall', xml).then(
+      (response) => !response.reservationConfirmeRS.errors,
+    );
   }
 
   /**
@@ -203,16 +194,15 @@ export class HUnitClient {
    */
   async occupancyRateUpdate(occupancyRates: OccupancyRate[]): Promise<boolean> {
     const updates = {
-      update: occupancyRates.map(rate => ({
+      update: occupancyRates.map((rate) => ({
         _attributes: {
           date: dateToStr(rate.date, 'YYYY-MM-DD'),
-          occupancy: rate.occupancy
-        }
-      }))
+          occupancy: rate.occupancy,
+        },
+      })),
     };
 
     const xml = this.getXMLBase('occupancyRateRQ', { updates });
-    return this.doRequest('occupancyrate/update', xml)
-      .then(response => !response.occupancyRateRS.errors);
+    return this.doRequest('occupancyrate/update', xml).then((response) => !response.occupancyRateRS.errors);
   }
 }

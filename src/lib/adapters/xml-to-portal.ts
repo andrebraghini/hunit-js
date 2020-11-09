@@ -5,7 +5,7 @@ function parsePortal(portal: any): Portal {
   const result: Portal = {
     ...cloneXmlStrings(portal._attributes),
     isActive: getXmlBoolean(portal._attributes.isActive),
-    isChildPortal: getXmlBoolean(portal._attributes.isChildPortal)
+    isChildPortal: getXmlBoolean(portal._attributes.isChildPortal),
   };
 
   return result;

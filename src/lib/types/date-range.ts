@@ -29,4 +29,3 @@ export interface DateRange {
   /** Saturday */
   sat?: boolean;
 }
-  

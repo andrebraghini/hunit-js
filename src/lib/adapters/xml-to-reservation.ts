@@ -1,21 +1,18 @@
 import { Reservation, Room } from '../types';
-import { getXmlString, strToDate, transformToArray, cloneXmlStrings, cloneXmlNumbers, getXmlNumber, getXmlBoolean } from '../util';
+import {
+  getXmlString,
+  strToDate,
+  transformToArray,
+  cloneXmlStrings,
+  cloneXmlNumbers,
+  getXmlNumber,
+  getXmlBoolean,
+} from '../util';
 
 function parseRoom(room: any): Room {
   const result: Room = {
-    ...cloneXmlStrings(room, [
-      'id',
-      'roomLocatorId',
-      'roomTypeId',
-      'status',
-      'remark',
-      'mealPlan'
-    ]),
-    ...cloneXmlNumbers(room, [
-      'adults',
-      'children',
-      'totalValue'
-    ])
+    ...cloneXmlStrings(room, ['id', 'roomLocatorId', 'roomTypeId', 'status', 'remark', 'mealPlan']),
+    ...cloneXmlNumbers(room, ['adults', 'children', 'totalValue']),
   };
 
   /** Data de chegada */
@@ -33,17 +30,17 @@ function parseRoom(room: any): Room {
 
   if (room.addons && room.addons.addon) {
     const addonList = transformToArray(room.addons.addon);
-    result.addons = addonList.map(addon => ({
+    result.addons = addonList.map((addon) => ({
       name: getXmlString(addon.name),
-      totalValue: getXmlNumber(addon.totalValue)
+      totalValue: getXmlNumber(addon.totalValue),
     }));
   }
 
   if (room.dailyRates && room.dailyRates.dailyRate) {
     const dailyRateList = transformToArray(room.dailyRates.dailyRate);
-    result.dailyRates = dailyRateList.map(rate => ({
+    result.dailyRates = dailyRateList.map((rate) => ({
       date: strToDate(getXmlString(rate.date)),
-      totalValue: getXmlNumber(rate.totalValue)
+      totalValue: getXmlNumber(rate.totalValue),
     }));
   }
 
@@ -65,10 +62,10 @@ function parseReservation(reservation: any): Reservation {
       'remark',
       'currencyCode',
       'locatorId',
-      'collectType'
+      'collectType',
     ]),
     ...cloneXmlNumbers(reservation, ['totalValue']),
-    ...(reservation.guest && { guest: cloneXmlStrings(reservation.guest) })
+    ...(reservation.guest && { guest: cloneXmlStrings(reservation.guest) }),
   };
 
   // Data de criação
@@ -95,9 +92,9 @@ function parseReservation(reservation: any): Reservation {
         'documentType',
         'documentNumber',
         'document',
-        'phone'
+        'phone',
       ]),
-      ...(reservation.guest.address && { address: cloneXmlStrings(reservation.guest.address) })
+      ...(reservation.guest.address && { address: cloneXmlStrings(reservation.guest.address) }),
     };
   }
 
@@ -110,14 +107,12 @@ function parseReservation(reservation: any): Reservation {
         'cardHolderName',
         'seriesCode',
         'expireDate',
-        'authorizationCode'
+        'authorizationCode',
       ]),
-      ...cloneXmlNumbers(reservation.payment, [
-        'prePaymentValue',
-        'numberOfInstallments',
-        'installmentValue'
-      ]),
-      ...(reservation.payment.prePaymentCharged && { prePaymentCharged: getXmlBoolean(reservation.payment.prePaymentCharged) })
+      ...cloneXmlNumbers(reservation.payment, ['prePaymentValue', 'numberOfInstallments', 'installmentValue']),
+      ...(reservation.payment.prePaymentCharged && {
+        prePaymentCharged: getXmlBoolean(reservation.payment.prePaymentCharged),
+      }),
     };
   }
 
@@ -135,8 +130,8 @@ export function xmlToReservation(xml: any, rootTag: string = 'reservationRS'): R
 export function xmlOneCallToReservation(xml: any): Reservation[] {
   const result: Reservation[] = [];
 
-  const list = transformToArray(xml.ArrayOfTReservationRS.TReservationRS); 
-  list.forEach(item => {
+  const list = transformToArray(xml.ArrayOfTReservationRS.TReservationRS);
+  list.forEach((item) => {
     if (item.reservation) {
       const reservationXMLList = transformToArray(item.reservation);
       result.push(...reservationXMLList.map(parseReservation));

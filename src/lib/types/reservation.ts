@@ -11,7 +11,7 @@ export interface Reservation {
 
   /** Código que identifica o portal no HUnit */
   portalId?: string;
-  
+
   /** Identificador da reserva no portal de origem */
   id?: string;
 

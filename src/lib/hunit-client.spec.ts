@@ -23,7 +23,7 @@ describe('HUnitClient', () => {
     password: 'user984.password',
   };
   const axiosMock = {
-    post: jest.fn()
+    post: jest.fn(),
   };
 
   beforeEach(() => {
@@ -46,7 +46,8 @@ describe('HUnitClient', () => {
       // Setup
       const data = { data: getXmlTestFile('portal-rs.xml') };
       axiosMock.post.mockResolvedValue(data);
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<portalRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
@@ -54,7 +55,7 @@ describe('HUnitClient', () => {
         '</portalRQ>';
 
       // Execute
-      return hunit.portalRead().then(result => {
+      return hunit.portalRead().then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('portal/read');
@@ -62,11 +63,25 @@ describe('HUnitClient', () => {
         expect(result).toMatchObject([
           { id: '1', name: 'Expedia', isActive: true },
           { id: '2', name: 'Booking.com', isActive: true },
-          { id: '3', name: 'Hotels.com', isActive: true, isChildPortal: true, masterPortalId: '1', masterPortal: 'Expedia' },
-          { id: '4', name: 'Venere', isActive: true, isChildPortal: true, masterPortalId: '1', masterPortal: 'Expedia' },
+          {
+            id: '3',
+            name: 'Hotels.com',
+            isActive: true,
+            isChildPortal: true,
+            masterPortalId: '1',
+            masterPortal: 'Expedia',
+          },
+          {
+            id: '4',
+            name: 'Venere',
+            isActive: true,
+            isChildPortal: true,
+            masterPortalId: '1',
+            masterPortal: 'Expedia',
+          },
           { id: '5', name: 'HBOOK', isActive: true },
           { id: '6', name: 'Orbitz', isActive: false },
-          { id: '7', name: 'Decolar', isActive: true }
+          { id: '7', name: 'Decolar', isActive: true },
         ]);
       });
     });
@@ -81,55 +96,56 @@ describe('HUnitClient', () => {
         {
           roomTypeId: '12',
           availability: 0,
-          dateRange: { from: new Date('2021-12-25'), to: new Date('2021-12-31') }
+          dateRange: { from: new Date('2021-12-25'), to: new Date('2021-12-31') },
         },
         {
           roomTypeId: '12',
           availability: 2,
-          dateRange: { from: new Date('2021-01-01'), to: new Date('2021-01-31'), fri: true, sat: true }
+          dateRange: { from: new Date('2021-01-01'), to: new Date('2021-01-31'), fri: true, sat: true },
         },
         {
           roomTypeId: '222',
           dateRange: { from: new Date('2021-12-25'), to: new Date('2021-12-31') },
-          stopSell: true
+          stopSell: true,
         },
         {
           roomTypeId: '15',
           dateRange: { from: new Date('2021-12-25'), to: new Date('2021-12-31'), sun: false, sat: false },
-          stopSell: false
-        }
+          stopSell: false,
+        },
       ];
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<updateRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
         '<hotelId>984</hotelId>' +
         '<updates>' +
-          '<update>' +
-            '<roomTypeId>12</roomTypeId>' +
-            '<availability>0</availability>' +
-            '<dateRange from="2021-12-25" to="2021-12-31" sun="true" mon="true" tue="true" wed="true" thu="true" fri="true" sat="true"/>' +
-          '</update>' +
-          '<update>' +
-            '<roomTypeId>12</roomTypeId>' +
-            '<availability>2</availability>' +
-            '<dateRange from="2021-01-01" to="2021-01-31" sun="false" mon="false" tue="false" wed="false" thu="false" fri="true" sat="true"/>' +
-          '</update>' +
-          '<update>' +
-            '<roomTypeId>222</roomTypeId>' +
-            '<stopSell>true</stopSell>' +
-            '<dateRange from="2021-12-25" to="2021-12-31" sun="true" mon="true" tue="true" wed="true" thu="true" fri="true" sat="true"/>' +
-          '</update>' +
-          '<update>' +
-            '<roomTypeId>15</roomTypeId>' +
-            '<stopSell>false</stopSell>' +
-            '<dateRange from="2021-12-25" to="2021-12-31" sun="false" mon="true" tue="true" wed="true" thu="true" fri="true" sat="false"/>' +
-          '</update>' +
+        '<update>' +
+        '<roomTypeId>12</roomTypeId>' +
+        '<availability>0</availability>' +
+        '<dateRange from="2021-12-25" to="2021-12-31" sun="true" mon="true" tue="true" wed="true" thu="true" fri="true" sat="true"/>' +
+        '</update>' +
+        '<update>' +
+        '<roomTypeId>12</roomTypeId>' +
+        '<availability>2</availability>' +
+        '<dateRange from="2021-01-01" to="2021-01-31" sun="false" mon="false" tue="false" wed="false" thu="false" fri="true" sat="true"/>' +
+        '</update>' +
+        '<update>' +
+        '<roomTypeId>222</roomTypeId>' +
+        '<stopSell>true</stopSell>' +
+        '<dateRange from="2021-12-25" to="2021-12-31" sun="true" mon="true" tue="true" wed="true" thu="true" fri="true" sat="true"/>' +
+        '</update>' +
+        '<update>' +
+        '<roomTypeId>15</roomTypeId>' +
+        '<stopSell>false</stopSell>' +
+        '<dateRange from="2021-12-25" to="2021-12-31" sun="false" mon="true" tue="true" wed="true" thu="true" fri="true" sat="false"/>' +
+        '</update>' +
         '</updates>' +
         '</updateRQ>';
 
       // Execute
-      return hunit.availabilityUpdate(updates).then(result => {
+      return hunit.availabilityUpdate(updates).then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('availability/update');
@@ -144,7 +160,8 @@ describe('HUnitClient', () => {
       // Setup
       const data = { data: getXmlTestFile('reservation-rs.xml') };
       axiosMock.post.mockResolvedValue(data);
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<reservationRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
@@ -152,7 +169,7 @@ describe('HUnitClient', () => {
         '</reservationRQ>';
 
       // Execute
-      return hunit.bookingRead().then(result => {
+      return hunit.bookingRead().then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('booking/read');
@@ -178,7 +195,7 @@ describe('HUnitClient', () => {
           documentType: 'CPF',
           documentNumber: '22687496532',
           email: 'ar@host.com',
-          phone: '1141267898'
+          phone: '1141267898',
         });
 
         // Dados de pagamento
@@ -188,7 +205,7 @@ describe('HUnitClient', () => {
           cardHolderName: 'Franco Roberto',
           seriesCode: '123',
           expireDate: '12/2015',
-          prePaymentValue: 95.50,
+          prePaymentValue: 95.5,
           prePaymentCharged: true,
           authorizationCode: '34cx5632xxgr2111',
         });
@@ -225,7 +242,7 @@ describe('HUnitClient', () => {
         expect(room.guest).toMatchObject({
           firstName: 'Antonio Rodrigues',
           lastName: 'Antonio Rodrigues',
-          email: 'ar@host.com'
+          email: 'ar@host.com',
         });
       });
     });
@@ -239,31 +256,32 @@ describe('HUnitClient', () => {
       const confirmations = [
         { reservationId: '12', pmsReservationIdentifier: 'my_id_1' },
         { reservationId: '52', pmsReservationIdentifier: 'my_id_2' },
-        { reservationId: '98', pmsReservationIdentifier: 'my_id_78' }
+        { reservationId: '98', pmsReservationIdentifier: 'my_id_78' },
       ];
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<reservationConfirmeRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
         '<hotelId>984</hotelId>' +
         '<confirmations>' +
-          '<confirmation>' +
-            '<reservationId>12</reservationId>' +
-            '<pmsReservationIdentifier>my_id_1</pmsReservationIdentifier>' +
-          '</confirmation>' +
-          '<confirmation>' +
-            '<reservationId>52</reservationId>' +
-            '<pmsReservationIdentifier>my_id_2</pmsReservationIdentifier>' +
-          '</confirmation>' +
-          '<confirmation>' +
-            '<reservationId>98</reservationId>' +
-            '<pmsReservationIdentifier>my_id_78</pmsReservationIdentifier>' +
-          '</confirmation>' +
+        '<confirmation>' +
+        '<reservationId>12</reservationId>' +
+        '<pmsReservationIdentifier>my_id_1</pmsReservationIdentifier>' +
+        '</confirmation>' +
+        '<confirmation>' +
+        '<reservationId>52</reservationId>' +
+        '<pmsReservationIdentifier>my_id_2</pmsReservationIdentifier>' +
+        '</confirmation>' +
+        '<confirmation>' +
+        '<reservationId>98</reservationId>' +
+        '<pmsReservationIdentifier>my_id_78</pmsReservationIdentifier>' +
+        '</confirmation>' +
         '</confirmations>' +
         '</reservationConfirmeRQ>';
 
       // Execute
-      return hunit.confirmePost(confirmations).then(result => {
+      return hunit.confirmePost(confirmations).then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('confirme/post');
@@ -278,7 +296,8 @@ describe('HUnitClient', () => {
       // Setup
       const data = { data: getXmlTestFile('package-rs.xml') };
       axiosMock.post.mockResolvedValue(data);
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<packageRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
@@ -286,7 +305,7 @@ describe('HUnitClient', () => {
         '</packageRQ>';
 
       // Execute
-      return hunit.packageRead().then(result => {
+      return hunit.packageRead().then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('package/read');
@@ -315,7 +334,8 @@ describe('HUnitClient', () => {
       // Setup
       const data = { data: getXmlTestFile('room-rate-rs.xml') };
       axiosMock.post.mockResolvedValue(data);
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<roomRateRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
@@ -323,7 +343,7 @@ describe('HUnitClient', () => {
         '</roomRateRQ>';
 
       // Execute
-      return hunit.roomRateRead().then(result => {
+      return hunit.roomRateRead().then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('roomrate/read');
@@ -378,7 +398,8 @@ describe('HUnitClient', () => {
       // Setup
       const data = { data: getXmlTestFile('reservation-by-id-rs.xml') };
       axiosMock.post.mockResolvedValue(data);
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<reservationByIdRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
@@ -387,7 +408,7 @@ describe('HUnitClient', () => {
         '</reservationByIdRQ>';
 
       // Execute
-      return hunit.bookingByIdRead({ locatorId: '5689' }).then(result => {
+      return hunit.bookingByIdRead({ locatorId: '5689' }).then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('bookingbyid/read');
@@ -415,7 +436,7 @@ describe('HUnitClient', () => {
           documentType: 'CPF',
           documentNumber: '22687496532',
           email: 'ar@host.com',
-          phone: '1141267898'
+          phone: '1141267898',
         });
 
         // Dados de pagamento
@@ -425,7 +446,7 @@ describe('HUnitClient', () => {
           cardHolderName: 'Franco Roberto',
           seriesCode: '123',
           expireDate: '12/2015',
-          prePaymentValue: 95.50,
+          prePaymentValue: 95.5,
           prePaymentCharged: true,
           authorizationCode: '34cx5632xxgr2111',
         });
@@ -462,25 +483,26 @@ describe('HUnitClient', () => {
         expect(room.guest).toMatchObject({
           firstName: 'Antonio Rodrigues',
           lastName: 'Antonio Rodrigues',
-          email: 'ar@host.com'
+          email: 'ar@host.com',
         });
       });
     });
   });
-  
+
   describe('bookingReadOneCall()', () => {
     it('deve retornar lista de reservas pendentes para vários hotéis', () => {
       // Setup
       const data = { data: getXmlTestFile('reservation-rs-one-call.xml') };
       axiosMock.post.mockResolvedValue(data);
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<reservationRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
         '</reservationRQ>';
 
       // Execute
-      return hunit.bookingReadOneCall().then(result => {
+      return hunit.bookingReadOneCall().then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('booking/readonecall');
@@ -506,15 +528,15 @@ describe('HUnitClient', () => {
           documentType: 'CPF',
           documentNumber: '22687496532',
           email: 'ar@host.com',
-          phone: '1141267898'
+          phone: '1141267898',
         });
 
         // Dados de pagamento
         expect(firstReservation.payment).toMatchObject({
           cardType: 'VISA',
-          prePaymentValue: 95.50,
+          prePaymentValue: 95.5,
           prePaymentCharged: true,
-          authorizationCode: '34cx5632xxgr2111'
+          authorizationCode: '34cx5632xxgr2111',
         });
 
         // Dados dos quartos
@@ -549,7 +571,7 @@ describe('HUnitClient', () => {
         expect(room.guest).toMatchObject({
           firstName: 'Volnei Hartaman',
           lastName: 'Silva',
-          email: 'volnei@gmail.com'
+          email: 'volnei@gmail.com',
         });
 
         // Segunda reserva
@@ -573,7 +595,7 @@ describe('HUnitClient', () => {
           documentType: 'Passport',
           documentNumber: '22687496532',
           email: 'ar@host.com',
-          phone: '1141267898'
+          phone: '1141267898',
         });
 
         // Dados de pagamento
@@ -582,7 +604,7 @@ describe('HUnitClient', () => {
           numberOfInstallments: 2,
           installmentValue: 150,
           prePaymentCharged: true,
-          authorizationCode: '34cx5632xxgr2111'
+          authorizationCode: '34cx5632xxgr2111',
         });
 
         // Dados dos quartos
@@ -614,7 +636,7 @@ describe('HUnitClient', () => {
         expect(secondRoom.guest).toMatchObject({
           firstName: 'Volnei Hartaman',
           lastName: 'Silva',
-          email: 'volnei@gmail.com'
+          email: 'volnei@gmail.com',
         });
       });
     });
@@ -628,33 +650,34 @@ describe('HUnitClient', () => {
       const confirmations = [
         { hotelId: '486', reservationId: '12', pmsReservationIdentifier: 'my_id_1' },
         { hotelId: '486', reservationId: '52', pmsReservationIdentifier: 'my_id_2' },
-        { hotelId: '654', reservationId: '98', pmsReservationIdentifier: 'my_id_78' }
+        { hotelId: '654', reservationId: '98', pmsReservationIdentifier: 'my_id_78' },
       ];
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<reservationConfirmeRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
         '<confirmations>' +
-          '<confirmation>' +
-            '<hotelId>486</hotelId>' +
-            '<reservationId>12</reservationId>' +
-            '<pmsReservationIdentifier>my_id_1</pmsReservationIdentifier>' +
-          '</confirmation>' +
-          '<confirmation>' +
-            '<hotelId>486</hotelId>' +
-            '<reservationId>52</reservationId>' +
-            '<pmsReservationIdentifier>my_id_2</pmsReservationIdentifier>' +
-          '</confirmation>' +
-          '<confirmation>' +
-            '<hotelId>654</hotelId>' +
-            '<reservationId>98</reservationId>' +
-            '<pmsReservationIdentifier>my_id_78</pmsReservationIdentifier>' +
-          '</confirmation>' +
+        '<confirmation>' +
+        '<hotelId>486</hotelId>' +
+        '<reservationId>12</reservationId>' +
+        '<pmsReservationIdentifier>my_id_1</pmsReservationIdentifier>' +
+        '</confirmation>' +
+        '<confirmation>' +
+        '<hotelId>486</hotelId>' +
+        '<reservationId>52</reservationId>' +
+        '<pmsReservationIdentifier>my_id_2</pmsReservationIdentifier>' +
+        '</confirmation>' +
+        '<confirmation>' +
+        '<hotelId>654</hotelId>' +
+        '<reservationId>98</reservationId>' +
+        '<pmsReservationIdentifier>my_id_78</pmsReservationIdentifier>' +
+        '</confirmation>' +
         '</confirmations>' +
         '</reservationConfirmeRQ>';
 
       // Execute
-      return hunit.bookingConfirmationOneCall(confirmations).then(result => {
+      return hunit.bookingConfirmationOneCall(confirmations).then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('booking/confirmationonecall');
@@ -672,22 +695,23 @@ describe('HUnitClient', () => {
       const updates = [
         { date: new Date('2020-01-01'), occupancy: 15 },
         { date: new Date('2020-01-02'), occupancy: 21 },
-        { date: new Date('2020-01-03'), occupancy: 13 }
+        { date: new Date('2020-01-03'), occupancy: 13 },
       ];
-      const expectedRequest = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      const expectedRequest =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
         '<occupancyRateRQ>' +
         '<userName>user984</userName>' +
         '<password>user984.password</password>' +
         '<hotelId>984</hotelId>' +
         '<updates>' +
-          '<update date="2020-01-01" occupancy="15"/>' +
-          '<update date="2020-01-02" occupancy="21"/>' +
-          '<update date="2020-01-03" occupancy="13"/>' +
+        '<update date="2020-01-01" occupancy="15"/>' +
+        '<update date="2020-01-02" occupancy="21"/>' +
+        '<update date="2020-01-03" occupancy="13"/>' +
         '</updates>' +
         '</occupancyRateRQ>';
 
       // Execute
-      return hunit.occupancyRateUpdate(updates).then(result => {
+      return hunit.occupancyRateUpdate(updates).then((result) => {
         // Validate
         expect(axiosMock.post.mock.calls.length).toBe(1);
         expect(axiosMock.post.mock.calls[0][0]).toBe('occupancyrate/update');
@@ -696,5 +720,4 @@ describe('HUnitClient', () => {
       });
     });
   });
-
 });
