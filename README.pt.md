@@ -7,11 +7,11 @@
     <img alt="André Braghini" src="https://img.shields.io/badge/-AndreBraghiniS-798D2A?style=flat&logo=Linkedin&logoColor=white" />
   </a>
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/andrebraghini/hunit-js?color=798D2A">
-  <a href="https://github.com/andrebraghini/hunit-js/commits/main">
+  <a href="https://github.com/andrebraghini/hunit-js/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/andrebraghini/hunit-js?color=798D2A">
   </a>
   <img alt="npm version" src="https://img.shields.io/npm/v/hunit-js?color=798D2A">
-  <a href="https://github.com/andrebraghini/hunit-js/blob/main/LICENSE">
+  <a href="https://github.com/andrebraghini/hunit-js/blob/master/LICENSE">
     <img alt="License" src="https://img.shields.io/badge/license-MIT-798D2A">
   </a>
 
@@ -25,7 +25,7 @@
 <p align="center">
   <a href="README.md">Inglês</a>
   ·
-  <a href="https://github.com/andrebraghini/hunit-js/blob/main/README.pt.md">Português</a>
+  <a href="https://github.com/andrebraghini/hunit-js/blob/master/README.pt.md">Português</a>
 </p>
 
 
