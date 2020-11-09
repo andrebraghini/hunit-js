@@ -2,14 +2,36 @@ import { InventoryUpdate } from '../types';
 import { clone } from '../util';
 import { dateToStr } from '../util';
 
+function getDaysOfWeek(value) {
+  const result = clone(value, ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']);
+  const hasDayTrue = Object.keys(result).filter(day => result[day] === true).length;
+  
+  for (const day of ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']) {
+    if (result[day] === undefined) {
+      result[day] = hasDayTrue ? false : true;
+    }
+  }
+
+  return {
+    sun: result.sun,
+    mon: result.mon,
+    tue: result.tue,
+    wed: result.wed,
+    thu: result.thu,
+    fri: result.fri,
+    sat: result.sat
+  };
+}
+
 export function inventoryToXml(inventoryUpdates: InventoryUpdate[]) {
-  return inventoryUpdates.map(updateItem => {
-    const result = clone(updateItem, ['roomTypeId',  'availability',  'stopSell',  'portalId']);
-    result.dateRange = {
-      _attributes: clone(updateItem.dateRange, ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'])
-    };
-    result.dataRange._attributes.from = dateToStr(updateItem.dateRange?.from, 'YYYY-MM-DD');
-    result.dataRange._attributes.to = dateToStr(updateItem.dateRange?.to, 'YYYY-MM-DD');
-    return result;
-  });
+  return inventoryUpdates.map(updateItem => ({
+    ...clone(updateItem, ['roomTypeId',  'availability',  'stopSell',  'portalId']),
+    dateRange: {
+      _attributes: {
+        from: dateToStr(updateItem.dateRange?.from, 'YYYY-MM-DD'),
+        to: dateToStr(updateItem.dateRange?.to, 'YYYY-MM-DD'),
+        ...getDaysOfWeek(updateItem.dateRange)
+      },
+    }
+  }));
 }
