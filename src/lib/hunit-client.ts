@@ -128,6 +128,9 @@ export class HUnitClient {
     const xml = this.getXMLBase('packageRQ');
     const response = await this.doRequest('package/read', xml);
 
+    if (!response.packageRS.package) {
+      return [];
+    }
     const packageXMLList = transformToArray(response.packageRS.package);
     return packageXMLList.map((packageItem) => ({
       ...clone(packageItem._attributes),
