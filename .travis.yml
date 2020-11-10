@@ -1,12 +1,5 @@
 language: node_js
-node_js:
-  - "7"
-
-script:
-  - istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec
+scripts:
+  - npm install codecov -g
+after_success:
   - codecov
-
-deploy:
-  provider: npm
-  email: $NPM_EMAIL
-  api_key: $NPM_TOKEN
