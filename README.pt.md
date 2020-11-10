@@ -6,17 +6,16 @@
   <a href="https://www.linkedin.com/in/andrebraghinis/">
     <img alt="André Braghini" src="https://img.shields.io/badge/-AndreBraghiniS-798D2A?style=flat&logo=Linkedin&logoColor=white" />
   </a>
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/andrebraghini/hunit-js?color=798D2A">
-  <a href="https://github.com/andrebraghini/hunit-js/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/andrebraghini/hunit-js?color=798D2A">
-  </a>
   <a href="https://www.npmjs.com/package/hunit-js">
     <img alt="npm version" src="https://img.shields.io/npm/v/hunit-js?color=798D2A">
   </a>
   <a href="https://github.com/andrebraghini/hunit-js/blob/master/LICENSE">
     <img alt="License" src="https://img.shields.io/badge/license-MIT-798D2A">
   </a>
-  <img alt="Test result" src="https://github.com/andrebraghini/hunit-js/workflows/Tests/badge.svg">
+  <a href="https://codecov.io/gh/andrebraghini/hunit-js">
+    <img src="https://codecov.io/gh/andrebraghini/hunit-js/branch/master/graph/badge.svg?token=bF5hxlvggz"/>
+  </a>
+  <img alt="Build result" src="https://travis-ci.org/andrebraghini/hunit-js.svg?branch=master">
 
   <br>
 
