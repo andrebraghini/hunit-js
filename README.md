@@ -16,6 +16,7 @@
   <a href="https://github.com/andrebraghini/hunit-js/blob/master/LICENSE">
     <img alt="License" src="https://img.shields.io/badge/license-MIT-798D2A">
   </a>
+  <img alt="Test result" src="https://github.com/andrebraghini/hunit-js/workflows/Tests/badge.svg">
 
   <br>
 
